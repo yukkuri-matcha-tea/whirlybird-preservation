@@ -6,6 +6,7 @@
 - Retained the standalone launcher and all preservation compatibility fixes.
 - Updated build, verification and ADB smoke-test scripts for the new package.
 - Verified the APK package, launcher, signing, alignment, DEX/resources/assets and uncompressed SoundPool OGG entries.
+- Completed user-reported physical-device validation covering USB ADB installation, accelerometer control, audio, death/collision/restart, recent-app label/icon and side-by-side comparison with the original version.
 
 ## preservation-3
 

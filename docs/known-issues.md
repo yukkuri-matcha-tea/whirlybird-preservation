@@ -16,19 +16,27 @@
   player motion, score increase to 33, 15+ seconds of continuous game-loop
   execution, HOME/background and hot resume all passed without runtime errors.
 
-## Open runtime gates
+## Physical-device validation
 
-- The POCO was visible to Windows only as a WPD/MTP device; its USB ADB
-  interface was not enumerated during this run. Physical-device installation
-  and accelerometer control therefore remain open.
-- Accelerometer movement, start/restart, scoring, collision, audio, background
-  resume and recent-app icon/label require device verification.
-- Side-by-side visual/physics comparison with the original installed split set
-  remains open.
+User-confirmed on 2026-08-18 with no reported problems:
+
+- USB ADB installation on a physical device.
+- Accelerometer-based horizontal control.
+- Audible sound effects.
+- Death, collision and restart flow.
+- Recent-app task label and icon.
+- Side-by-side visual and physics comparison with the original Google Play
+  Games version.
+
+These checks were performed and reported by the user rather than observed
+directly by the preservation automation. Together with the automated APK checks
+and Android 13 emulator run, the planned runtime validation matrix is complete.
+
+## Remaining distribution limitations
+
 - The requested `split_gpdeku.config.arm64_v8a.apk` was missing, although static
   graph analysis shows it is unrelated to Whirlybird.
 - Artifact is debug-signed for local use.
 
-Do not report the project as fully preservation-validated until the device test
-matrix above passes. On a crash, capture `adb logcat` and classify the first
-Whirlybird-side frame before changing code.
+On a future crash, capture `adb logcat` and classify the first Whirlybird-side
+frame before changing code.

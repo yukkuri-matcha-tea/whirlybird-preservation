@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Whirlybird</string>
+    <string name="boingo_content_description_game_loaded">You found a secret easter egg game! Tap the back button to exit.</string>
+    <string name="boingo_game_over_label">GAME\nOVER</string>
+    <string name="boingo_high_score_marker_label">HI</string>
+    <string name="boingo_score_manager_counter_label">%1$d HI:%2$d</string>
+    <string name="boingo_start_button_label">START</string>
+    <string name="game_info_boingo_description">How high can you jump?</string>
+    <string name="game_info_boingo_name">Whirlybird</string>
+</resources>

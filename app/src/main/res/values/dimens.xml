@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="boingo_current_score_container_height">48dp</dimen>
+    <dimen name="boingo_current_score_text_left">24dp</dimen>
+    <dimen name="boingo_current_score_text_size">16sp</dimen>
+    <dimen name="boingo_current_score_text_top">36dp</dimen>
+    <dimen name="boingo_game_over_text_size">38sp</dimen>
+    <dimen name="boingo_game_over_text_vertical_margin">128dp</dimen>
+    <dimen name="boingo_high_score_marker_label_text_size">16sp</dimen>
+    <dimen name="boingo_high_score_marker_label_x_offset">18dp</dimen>
+    <dimen name="boingo_high_score_marker_label_y_offset">6dp</dimen>
+    <dimen name="boingo_player_x_offset_threshold">10dp</dimen>
+    <dimen name="boingo_start_button_height">58dp</dimen>
+    <dimen name="boingo_start_button_y_pos">58dp</dimen>
+</resources>

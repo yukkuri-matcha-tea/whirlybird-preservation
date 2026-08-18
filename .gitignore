@@ -1,0 +1,10 @@
+.gradle/
+**/build/
+dist/
+*.log
+local.properties
+*.jks
+*.keystore
+
+# This working preservation tree contains locally extracted Google assets.
+# Do not publish those files without determining that you have the rights to do so.

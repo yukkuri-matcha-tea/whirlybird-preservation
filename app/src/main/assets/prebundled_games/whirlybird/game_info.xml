@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!-- Information about the prebundled game "Whirlybird". -->
+<gameinfo
+    developer="Google"
+    themeColor="#FFFFFF"
+    iconFilename="icon.webp"
+    iconBackgroundColor="#ffffff"
+    animationFilename="animation.json"
+    hiResImageFilename="preview.png"
+    featuredImageFilename="banner.webp"
+    backgroundImageFilename="background.png"
+    launchType="boingo"
+    orientation="portrait"
+    supportsAtv="false"
+    screenName="Whirlybird"/>

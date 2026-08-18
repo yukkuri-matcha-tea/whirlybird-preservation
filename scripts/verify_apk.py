@@ -17,22 +17,30 @@ expected_assets = {
     "assets/prebundled_games/whirlybird/icon.webp",
     "assets/prebundled_games/whirlybird/preview.png",
 }
-expected_oggs = {
-    "res/raw/boingo_jump_sound.ogg",
-    "res/raw/boingo_nooglerhat_sound.ogg",
-    "res/raw/boingo_platformbreak_sound.ogg",
-    "res/raw/boingo_playerdeath_sound.ogg",
-    "res/raw/boingo_spring_sound.ogg",
-}
+expected_ogg_layouts = (
+    {
+        "res/raw/boingo_jump_sound.ogg",
+        "res/raw/boingo_nooglerhat_sound.ogg",
+        "res/raw/boingo_platformbreak_sound.ogg",
+        "res/raw/boingo_playerdeath_sound.ogg",
+        "res/raw/boingo_spring_sound.ogg",
+    },
+    # AGP's optimized release resource paths. The resources table retains the
+    # public raw resource names and maps them to these original-style members.
+    {"res/72.ogg", "res/FN.ogg", "res/Mt.ogg", "res/RT.ogg", "res/ve.ogg"},
+)
 
 with zipfile.ZipFile(apk) as archive:
     bad = archive.testzip()
     if bad:
         fail(f"corrupt ZIP member: {bad}")
     names = set(archive.namelist())
-    missing = (expected_assets | expected_oggs) - names
+    missing = expected_assets - names
     if missing:
         fail(f"missing required entries: {sorted(missing)}")
+    expected_oggs = next((layout for layout in expected_ogg_layouts if layout <= names), None)
+    if expected_oggs is None:
+        fail("required SoundPool OGG layout is missing")
     for name in sorted(expected_oggs):
         if archive.getinfo(name).compress_type != zipfile.ZIP_STORED:
             fail(f"SoundPool resource is compressed: {name}")

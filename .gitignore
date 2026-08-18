@@ -4,6 +4,8 @@ dist/
 work/
 *.log
 local.properties
+keystore.properties
+signing/
 *.jks
 *.keystore
 

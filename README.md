@@ -24,7 +24,7 @@
 |---|---|
 | アプリ名 | Whirlybird |
 | Application ID | `com.google.android.play.games.whirlybird` |
-| バージョン | `preservation-4`（versionCode 4） |
+| バージョン | `preservation-5`（versionCode 5） |
 | Launcher | `BoingoGameActivity` |
 | 対応Android | minSdk 23 / targetSdk 35 |
 | ネット接続 | 不要、`INTERNET` permissionなし |
@@ -32,7 +32,7 @@
 | Google Play Games | 不要 |
 | Google Play services | パッケージ済み依存グラフでは不要 |
 | Native library | なし |
-| 署名 | ローカル検証用debug署名 |
+| 署名 | Whirlybird Preservation専用release証明書 |
 
 ## どこまで元の実装か
 
@@ -107,13 +107,21 @@ smaliの分岐先を照合して本来のループ終了を復元し、異常時
 
 ## APKを使う
 
-GitHubの [Releases](../../releases) にある `Whirlybird.apk` をダウンロードしてください。現状のAPKはdebug署名の保存・テスト用ビルドです。
+GitHubの [Releases](../../releases) にある `Whirlybird.apk` をダウンロードしてください。`preservation-5`以降はWhirlybird Preservation専用のrelease鍵で署名されています。
+
+署名証明書SHA-256 fingerprint：
+
+```text
+E0:13:A2:12:E3:EC:CE:92:5B:8D:C8:52:D0:C2:37:CD:42:9F:68:18:E9:3A:B9:C1:F9:66:00:BE:45:2A:62:74
+```
 
 ADBでインストールする場合：
 
 ```powershell
 adb install -r Whirlybird.apk
 ```
+
+`preservation-4`以前のdebug署名版と`preservation-5`のrelease署名版は署名が異なるため、そのまま上書きできません。署名不一致エラーが出る場合は旧版を一度アンインストールしてから導入してください。`preservation-5`以降は同じrelease鍵で更新できます。
 
 直接起動する場合：
 
@@ -135,13 +143,21 @@ adb shell am start -W -n `
 
 ### ビルド
 
+初回だけrelease署名鍵を作成します。生成された `signing` フォルダは今後の更新に必須です。GitHubには登録されないため、安全なオフライン媒体にもバックアップしてください。
+
+```powershell
+.\scripts\setup-release-signing.ps1
+```
+
+その後、release APKをビルドします。
+
 ```powershell
 $env:JAVA_HOME = 'C:\Program Files\Android\Android Studio\jbr'
 $env:ANDROID_HOME = "$env:LOCALAPPDATA\Android\Sdk"
 .\scripts\build.ps1
 ```
 
-生成物は `dist\Whirlybird.apk` です。ビルドスクリプトは続けて署名、alignment、package、Launcher、DEX、resource、asset、OGG圧縮方式などを検査します。
+生成物は `dist\Whirlybird.apk` です。ビルドスクリプトはrelease署名設定を必須とし、続けて証明書fingerprint、署名、alignment、package、Launcher、DEX、resource、asset、OGG圧縮方式などを検査します。
 
 ## ADBスモークテスト
 

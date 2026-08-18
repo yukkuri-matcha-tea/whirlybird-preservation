@@ -18,4 +18,4 @@ For a future public version, the preferred design is an extractor/patcher that r
 
 ## APK status
 
-Generated APKs are debug-signed local preservation/test artifacts. They are not Play Store releases and must not be presented as official Google builds.
+Beginning with `preservation-5`, generated APKs are signed with a dedicated Whirlybird Preservation release certificate. This provides a stable update identity and APK integrity; it does not make the build official, confer Google endorsement or make it a Play Store release. The private signing key is excluded from Git and must never be published.

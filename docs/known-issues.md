@@ -36,7 +36,8 @@ and Android 13 emulator run, the planned runtime validation matrix is complete.
 
 - The requested `split_gpdeku.config.arm64_v8a.apk` was missing, although static
   graph analysis shows it is unrelated to Whirlybird.
-- Artifact is debug-signed for local use.
+- `preservation-5` uses a dedicated release certificate, but it remains an
+  unofficial sideloaded preservation build and is not a Play Store release.
 
 On a future crash, capture `adb logcat` and classify the first Whirlybird-side
 frame before changing code.

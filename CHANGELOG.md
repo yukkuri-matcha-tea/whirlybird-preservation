@@ -1,5 +1,13 @@
 # Changelog
 
+## preservation-5
+
+- Replaced the Android debug certificate with a dedicated RSA 4096-bit Whirlybird Preservation release key.
+- Added a safe local signing-key setup workflow; the keystore, credentials and recovery record are excluded from Git.
+- Made the default build produce a release-signed APK and reject missing signing configuration.
+- Added automatic verification of the expected release certificate SHA-256 fingerprint.
+- Extended the APK verifier to recognize AGP's optimized release OGG member layout while still requiring all five SoundPool files to be uncompressed.
+
 ## preservation-4
 
 - Changed the standalone application ID to the original-APK-derived `com.google.android.play.games.whirlybird` identifier.

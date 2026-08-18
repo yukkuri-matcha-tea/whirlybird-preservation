@@ -1,6 +1,8 @@
 param(
     [Parameter(Mandatory = $true)]
-    [string] $Apk
+    [string] $Apk,
+
+    [string] $ExpectedSignerSha256 = 'e013a212e3ecce925b8dc852d0c237cd429f6818e93ab9c1f96600be452a6274'
 )
 
 $ErrorActionPreference = 'Stop'
@@ -18,6 +20,12 @@ $zipalign = Join-Path $buildTools.FullName 'zipalign.exe'
 
 & $apksigner verify --verbose $apkPath
 if ($LASTEXITCODE -ne 0) { throw 'apksigner verification failed' }
+$certificateInfo = (& $apksigner verify --print-certs $apkPath) -join "`n"
+if ($LASTEXITCODE -ne 0) { throw 'APK certificate inspection failed' }
+Write-Host $certificateInfo
+if ($certificateInfo -notmatch [regex]::Escape($ExpectedSignerSha256.ToLowerInvariant())) {
+    throw 'APK is not signed by the Whirlybird release certificate'
+}
 & $zipalign -c -P 16 4 $apkPath
 if ($LASTEXITCODE -ne 0) { throw 'zipalign verification failed' }
 

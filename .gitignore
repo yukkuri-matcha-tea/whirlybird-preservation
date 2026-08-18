@@ -1,6 +1,7 @@
 .gradle/
 **/build/
 dist/
+work/
 *.log
 local.properties
 *.jks
